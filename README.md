@@ -1,59 +1,80 @@
-airnbn_predict_first-booking
+# airnbn_predict_first-booking
 ==============================
 
-A short description of the project.
+# Project in progress...
 
-Project under creation...
-
-Project Organization
-------------
-
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+Projeto de Previsão do primeiro destino que um novo usuario irá escolher.
 
 
---------
+## 1. Contextualização:
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+Os dados do projeto foram obtidos do kaggle, do desafio "Health Insurance Cross Sell Prediction".
+
+O contexto do negoócio é fictício, porem todo o planejamento e desenvolvimento da solução esta sendo realizado seguindo todos os passos de um projeto real para o mercado de trabalho.
+
+Todo o projeto é desenvolvido utlizando a metodologia CRISP-DS
+
+### 1.1 Problema de Negócio
+
+
+### 1.2 Objetivo
+
+
+## 2. Premissas de Negócio
+
+
+
+## 3. Planejamento da Solução
+
+### 3.1 Produto Final
+
+
+### 3.2 Ferramentas
+
+
+### 3.3 Processo da solução
+
+
+#### 3.3.1 Estrategia da Solução
+
+
+**Step 1. Data Description:**
+
+**Step 2. Feature Engineering:**
+
+**Step 3. Data Filtering:**
+
+**Step 4. Exploratory Data Analysis:**
+
+**Step 5. Data Preparation:**
+
+**Step 6. Feature Selection:**
+
+**Step 7. Machine Learning Modelling:**
+
+**Step 8. Hyperparamater And Fine Tunning:**
+
+**Step 9. Convert Model Performance to Business Values:**
+
+**Step 10. Deploy Modelo to Production:**
+
+
+## 4. Principais Insights dos dados
+
+
+## 5. Modelo de Machine Learning aplicado
+
+
+## 6. Performance do modelo.
+
+
+## 7. Resultados de Negócio.
+
+
+# 8. Conclusões do projeto
+
+
+# 9. Melhorias Futuras
+
+
+# 10 Referêrencias
