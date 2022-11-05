@@ -8,11 +8,11 @@ Projeto de Previsão do primeiro destino que um novo usuario irá escolher.
 
 ## 1. Contextualização:
 
-Os dados do projeto foram obtidos do kaggle, do desafio "Health Insurance Cross Sell Prediction".
+Os dados do projeto foram obtidos do kaggle, do desafio "airnbn_predict_first-booking".
 
-O contexto do negoócio é fictício, porem todo o planejamento e desenvolvimento da solução esta sendo realizado seguindo todos os passos de um projeto real para o mercado de trabalho.
+O contexto do negócio é fictício, porem todo o planejamento e desenvolvimento da solução esta sendo realizado seguindo todos os passos de um projeto real para o mercado de trabalho.
 
-Todo o projeto é desenvolvido utlizando a metodologia CRISP-DS
+Todo o projeto é desenvolvido utilizando a metodologia CRISP-DS
 
 ### 1.1 Problema de Negócio
 
