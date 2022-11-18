@@ -89,6 +89,8 @@ Todo o projeto é desenvolvido utilizando a metodologia CRISP-DS
 - H12- Fornecedor afiliado, não pode ser de algum destino e de alguma forma pode influenciar a decisão do cliente
 - H13- 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Ciclo001 - End to End
 
 No primeiro Ciclo do crisp (End to End) foi criado todo o pipeline do projeto, e consegui identificar que existe um grande desbalanceamento na nossa variavel respota, e nosso modelos inicial teve uma performance de 0.09 (Balanced Accuracy: 0.09)
@@ -106,23 +108,60 @@ seguir alguns passos:
 
 Fazendo o balanceamento com os dados sujos ou sem nenhuma features criada para representar o modelo o Balanceamento vai piorar ainda mais o problema.
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Ciclo002 - Imbalanced Metrics
 
+Neste ciclo trabalhei com as metricas dos modelos, pois conforme o ultimo ciclo, foi identificado que temos as classes bem desbalanceadas e a ideia do ciclo anterior foi apenas de montar todos os pipeline do projeto, ignorano sujeira nos dados e uma analise mais detalhada do mesmo que iremos realizar mais para frente, o objetivo foi identificar que temos classes desbalanceada e decidir quais metricas mais se ajustam a realidade dos dados. Neste caso decidi utilizar o Balanced Accuracy e Kappa Score que explico no detalhe abaixo.
 
-Neste ciclo estarei focando: 
+Balanced Accuracy - Essa metrica pega a media das acurácias de cada classe, a vantagem da metrica é que ela vai da sempre um valor baixo, pois algumas das condições vai esta muilto alto e as outras classes muito baixo, com isso conseguimos penalizar a classe majoritária e temo um resultado mais fiel a realidade.
 
-- Realizando a analise descritiva das features, procurando inconsistencia nos dados
-- Criando as Hipóteses e validando, tentando encontra padrões nos dados que possa nos ajuda a entender melhor cada features.
-- criação de Features Relevantes 
-- Filtrando e removendo ruidos caso necessário
-- Balanceamento das Classes 
-- Escolha de outros Algoritmos de Ml
+Kappa Score - Essa metrica medi o nivel de acordo entre 2 avaliadores, entende-se como avaliador o modelo que faz a predição e o outro avaliador seria a classe real. A formula do Kappa score da a probabilidade de haver um acordo entre dois estimadores e esse acordo seja maior do que um acordo aleatório. Enquanto um acordo entre dois estimadores é melhor do que se os dois jogasse uma moeda, temos uma garantia estatistica que o resultado será melhor do que um modelo aleatório.
 
-## Registro de algumas manipulações
+### Conclusão do primeiro ciclo:
+Neste ciclo o bjetivo foi alcançado com a implementação das metricas.
 
-- Tratamento das colunas com dados faltante
-    - Feature idade, tem 87.990 dados faltantes, para este ciclo a decisão foi colocar a mediana no lugar. (34 anos)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Ciclo003 - Cross_validation
+A intenção deste ciclo foi a criação apenas do pipeline do cross validation, pois entendo que este processo evita termos o problema do viés de seleção, onde no processo de selecionar 80% para treino e 20% para teste conforme feito no ciclo passado, podemos ter sorte de selecionar uma boa amostra dos dados de teste ou vise e versa. Se não tratarmos o vies de seleção podemos esta vendo a performance do modelo errado ou podemos estar inputando nossos axismo dentro dos dados, fazendo que o modelo aprenda o que queremos e não o que deveria realmente aprender.
+Com a criação do cross validation, amostramos o conjunto de dados mais vezes, garantindo o aprendizado de todos os padrão dos dados. 
+
+### Conclusão do ciclo:
+Apos rodar o cross validation tivemos ainda uma performance muito ruim do modelo, este resultando ja era esperado pois o desenvolvimento deste ciclo foi apenas para deixar o pipeline pronto, e nos demais ciclos estarei trabalhando na limpeza dos dados, criação de features e no balanceamento. Acredito que teremos uma boa melhora do modelo apos essas etapas.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Ciclo004 - Feature_Engineering
+
+Neste ciclo iniciamos todas a parte de tratamento dos dados, vou detalhar abaixo o que foi feito e o motivo de cada decisão.
+
+## 1 - Data Description
+
+Nesta estapa verifico o o resumo dos dados, dimensão dos dados, o tipo de variaveis que temos e faço a checagem se temos NA nos dados.
+
+No caso dos dados em questão tivemos que tomar algumas decisões referente aos dados faltantes, detalho abaixo o motivo para cada coluna.
+
+## 1.1 Treatment NA
+
+### Coluna: date_first_booking (Primeiro book do cliente)
+
+Nesta coluna, tinhamos quase 60% de dados faltante, e os dados representava 100 de uma classe, onde precisei analisar a fundo para conseguir substituir por alguma data, não podia perder 60% dos dados, faria muita falta. Analisando a relação da coluna com as classes, identifiquei que a maioria que não tinha destino definido não teria a data da reserva, fazendo todo sentido. Para este caso se tivesse trabalhando para a Airbnb eu colocaria a data do dia atual, pois todos os dias os dados seria atualizado para a data atual, pois quando o cliente entrou no site até hoje teria x dias que ele ainda não fez o book, e dessa forma seria calculado essa quantidade de dias como features, como esses dados não estão atualizados, irei pegar a ultima data que temos de informação na coluna e adicionar para os dados faltante.
+
+### Coluna Age (Idade)
+
+Nesta coluna tinhamos 41% de dados faltantes, fiz a relação das idades com a classe e tinhamos os dados bem distribuidos de 20 a 65 anos, e umas idades estranha que iremos tratar mais a frente, o foco aqui era resolver o problema dos dados faltantes. Como as idades estava distribuidos tinhamos quase uma distribuição normal, neste caso podemos substituir pela media, pois podemos afirmar que substituindo pela media não estamos colocando viés nos dados. Se os dados tem uma distribuição normal quer dizer que podemos representar ele por uma media e desvio padrão.
+
+### Coluna first_affiliate_tracked (primeira afiliação rastreada: qual foi o primeiro marketing com que o utilizador interagiu antes da inscrição)
+
+Nesta coluna temos apenas 3% de dados faltantes, neste caso por ser dados categoricos, prefiro jogar fora do que tentar substituir e acabar inputando um viés nos dados.
+
+### sessions.csv (data1)
+
+Para a nossa segunda base de dados, exclui todos os dados faltantes, pois tenho mais de 1 milhão de dados e um percentual muito abaixo de dados faltantes. 
+
+
+Dessa forma finalizamos a etapa de tratamento dos NAs.
 
 
 
-### Conclusão do Segundo ciclo:
