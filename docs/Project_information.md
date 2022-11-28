@@ -124,6 +124,7 @@ Neste ciclo o bjetivo foi alcançado com a implementação das metricas.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Ciclo003 - Cross_validation
+
 A intenção deste ciclo foi a criação apenas do pipeline do cross validation, pois entendo que este processo evita termos o problema do viés de seleção, onde no processo de selecionar 80% para treino e 20% para teste conforme feito no ciclo passado, podemos ter sorte de selecionar uma boa amostra dos dados de teste ou vise e versa. Se não tratarmos o vies de seleção podemos esta vendo a performance do modelo errado ou podemos estar inputando nossos axismo dentro dos dados, fazendo que o modelo aprenda o que queremos e não o que deveria realmente aprender.
 Com a criação do cross validation, amostramos o conjunto de dados mais vezes, garantindo o aprendizado de todos os padrão dos dados. 
 
@@ -163,5 +164,46 @@ Para a nossa segunda base de dados, exclui todos os dados faltantes, pois tenho 
 
 Dessa forma finalizamos a etapa de tratamento dos NAs.
 
+## Change Data Type
 
+Nesta estapa, apenas algumas transformações de tipo de dados.
 
+## 2 Descriptive Statistics
+
+### 2.1 - Variaveis numericas
+
+### Coluna AGE
+Avaliando esta coluna notei inconsistencia nos dados, pois tinhamos pessoas com idade minima de 1 ano e maxima 2014, claramente erros de digitação. Primeiramente fiz uma analise dos clientes acima de 80 anos, como que esses clientes estavam distribuidos em relação a variavel resposta, notei que seguia a mesma distribuição desbalanceada da variavel resposta, então faz sentido manter uma faixa de idade acima de 80 anos, decidi fica com os dados onde a idade minima seria 15 anos e a idade maxima 120 anos.
+
+### secs_elapsed
+Essa feature nos tras as informações de quanto tempo o cliente permaneceu no site, estranhamente temos tempo = 0, desta forma limpamos os dados que tinha valor 0.
+
+### 2.2 Variaveis categoricas
+A maioria das features são categoricos, desta forma fiz avaliação de cada features utilizando sweetviz, com foco na quantidade de categoria de cada variavel, algumas features chama atençao com mais de 50 categoria, onde posso ter problemas na hora da preparação dos dados, pois dependendo da tecnica aplicada posso ter problemas de dimensionalidade dos dados, uma forma de tentar diminuir é verificando a correção dessas variavel e onde tive uma correlação acima de 0.6 posso escolher a variavel com maior numero de categoria e retirar ela dos dados. Nessa etapa a intenção é apenas identificar essas features e mais a frente iremos executar os filtros necessarios.
+
+Resumo das correlações:
+
+Temos algumas correlações interrantes:
+
+Dados dos Usuarios:
+
+affiliate_channel x affiliate_provider = correlação de 0.62
+first_device_type x first_browser = correlação de 0.63
+first_device_type x signup_app = 0.65
+
+Dados das sessions:
+
+action x action_type = correlação de 0.95
+action_detail x action_type = correlação de 0.98
+
+Lembrando que acima de 0.60 ja consideramos uma correlação forte e podemos escolher excluir umas das variaveis, de preferencia para este caso a que tiver a maior quantidade de categorias.
+
+### Conclusão do ciclo:
+
+Neste ciclo foi efetuado o tratamento dos NAs, onde tomei algumas decisões para cada features utilizando algumas tecnicas de negócio e estatisticas para identificar a melhor forma de substituir os deletar os dados faltantes. Fiz a analise Estatistica das variaveis numericas e categoricas. Na analise da coluna AGE identifiquei inconsistencia e com uma investigação mais profunda defini a faixa de idade que irei trabalhar. 
+En relação as features categoricas, fiz uma verificação da quantidade de categoria para cada variaveis e as correlações entre ela, onde nos proximo ciclos irei retirar do dataset essas variavei que tem uma alta correlação e com uma quantidade grande de categorias, tentanto evitar a maldição da dimensionalidade.
+Finalizando rodei novamente o modelo e tive uma leve melhora na peformace dele:
+
+Accuracy:          0.6234662019893995
+Balanced Accuracy: 0.10740227055978153
+Kappa Score:       0.2404154316603052
