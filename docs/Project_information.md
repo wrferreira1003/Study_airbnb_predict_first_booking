@@ -207,3 +207,89 @@ Finalizando rodei novamente o modelo e tive uma leve melhora na peformace dele:
 Accuracy:          0.6234662019893995
 Balanced Accuracy: 0.10740227055978153
 Kappa Score:       0.2404154316603052
+
+# Ciclo005 - Balanced Dataset
+
+Neste ciclo foi desenvolvido o Pipelane do balanceamento dos dados. 
+Lembrando que não podemos julgar o modelo antes de cumprirmos todas as etapas necessária para melhorar os dados:
+Limpeza  dos dados, Susbstituição dos dados Faltantes, Criação das features para modelar o fenomeno, Desbalanceamento dos dados, escala dos dados e Seleção de Features.
+Outro problema é que pode acontecer que o modelo que estamos usando tem um viés muito diferente do dados e com isso o modelo não consegue performar bem para esses tipos de dados.
+
+Para balancear os dados utilizei a união dos metodos Smote-Tomek Links.
+O Smote gera exemplos com base na distância de cada dado (Geralmente usando a distancia euclidiana) e os vizinhos mais proximos da classe minoritária, portanto, os exemplos gerados são diferentes da classe majoritária original. Esse método é eficaz porque os dados sintéticos gerados são relativamente próximos do espaço de recusros na classe majoritária, adicionando assim novas "informações" aos dados.
+Tomek links usa a regra para selecionar o par de observações (Digamos, a e b) que são atendidos nessas propriedades:
+1. O vizinho mais proximo da observação a e b.
+2. O vizinho mais proximo da observação b é a.
+3. As observações a e b pertencem a uma classe diferente. Ou seja, a e b pertencem à classe minoritária e majoritária (Ou vice-versa), respectivamente.
+
+A União dos dois metodos combina a capacidade do SMOTE de gerar dados sintéticos para a classe minoritária e a capacidade dos links Tomek de remover os dados indentificados como links tomek da classe majoritária (ou seja, amostras de dados da classe majoritária mais proxima com os dados da classe minoritária).
+
+Apos o processo de balanceamento tivemos uma pequena melhora no modelo, ainda utilizando REDE Neural, mesmo sabendo que não parece ser uma boa escolha de modelo para esse problema de negócio, mas a intenção é seguir todos os passos na transformação dos dados e quando todo processo tiver pronto e verificar outros tipos de modelo que melhor performance com o problema de negócio.
+
+Accuracy:           0.19084187478183606
+Balanced Accuracy:  0.16665973863452888
+Kappa Score:        0.10566975266472478
+
+# Ciclo006 - Exploratory Data Analysis
+
+Objetivo deste ciclo é ganhar experiencia de negócio atraves dos dados, Como cientista de dados na maioria das vezes não estamos na operação do dia dia das empresas, neste caso não sabemos as metricas, como todo negócio funciona, a analise dos dados seria a melhor forma de enchergar o modelo de negócio da empresa do ponto de vista do dados. 
+A analise de dados é a melhor forma de entender o negocio que estamos inseridos.
+    Gerar Insights para o time de Negocio;
+    Avaliar i impacto das features sobre o fenomeno.
+
+# Ciclo007 - Feature Selection
+
+"A explicação mais simples sobre um fenomeno observado, deveria prevalecer sobre explicações mais complexas"
+
+Quanto mais features temos, mais espaço vai sendo criado e mais esparço os dados vão ficando. Chegando em um ponto que já não temos mais a representação do fenomeno original.
+Para este caso usamos o algoritmo boruta para selecionar as principais features do projeto comparando com um modelo de arvore. 
+Com as features selecionada tivemos o seguinte resultado da NLP:
+
+Accuracy:          0.36634087519436426
+Balanced Accuracy: 0.36500792894874645
+Kappa Score:       0.30832255569348554
+
+# Ciclo008 - Neural Network MLP
+
+Neste ciclo faço no detalhe apenas a REde Neural, mantendo o mesmo resultado do ciclo anterior.
+
+Accuracy:          0.36634087519436426
+Balanced Accuracy: 0.36500792894874645
+Kappa Score:       0.30832255569348554
+
+# Ciclo009 - Aplicando PCA
+
+Neste ciclo aplico a tecnica de PCA nos dados que é um processo de mudança de espaço que ocorre atraves da combinação linear entre os eixos originais, com o PCA podemos reduzir o espaço de dados para uma dimensionalidade menor e com isso realizar operações algebricas mais facilmente. Um dos problemas do PCA é que perdemos a explicatividade dos dados, isso para reportar ao time de negócio é importante.
+
+Vamos a performance sem PCA e com PCA.
+
+Sem PCA:
+
+Accuracy:           0.3673563291340082
+Balanced Accuracy:  0.367859512466673
+Kappa Score:        0.3094952951924361
+
+Com PCA:
+
+Accuracy:           0.3566781962999397
+Balanced Accuracy:  0.3595810612238049
+Kappa Score:        0.29887947727417963
+
+Com PCA + Cross Validation
+
+Avg Balanced Accuracy: 0.36 +/- 0.0044
+Avg Kappa Accuracy: 0.2983 +/- 0.0043
+
+
+
+Neste ciclo podemos notar que realmente o modelo que estamos utilizando não é compativel com o nosso problema de negócio, para o proximo ciclo iremos treinar outros tipos de modelo procurando o que melhor irá performar com o fenomeno.
+
+
+# Ciclo010 - Treino de novos modelos
+
+Neste etapa iremos treinar varios modelos de forma simples e o que melhor performar iremos realizar o Fine Tuning e rodar o Cross Validation
+
+# Ciclo011 - Transformando a performance do modelo em performance de negocio
+
+
+
